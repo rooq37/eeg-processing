@@ -13,8 +13,8 @@ def convert_micro_volt_to_decibel(micro_volt):
     return np.log10(micro_volt) * 10
 
 
-bad_code = pd.read_csv("C:\\Users\\Mateusz\\Desktop\\EGG_BETAS\\BADCODE_EEG_BETAS_LEGACY_0_5\\PSD_metrics.csv")
-good_code = pd.read_csv("C:\\Users\\Mateusz\\Desktop\\EGG_BETAS\\GOODCODE_EEG_BETAS_LEGACY_0_5\\PSD_metrics.csv")
+# bad_code = pd.read_csv("C:\\Users\\Mateusz\\Desktop\\EGG_BETAS\\BADCODE_EEG_BETAS_LEGACY_0_5\\PSD_metrics.csv")
+# good_code = pd.read_csv("C:\\Users\\Mateusz\\Desktop\\EGG_BETAS\\GOODCODE_EEG_BETAS_LEGACY_0_5\\PSD_metrics.csv")
 
 # bad_code = pd.read_csv("C:\\Users\\Mateusz\\Desktop\\EGG_BETAS\\BADCODE_EEG_BETAS_LEGACY_1\\PSD_metrics.csv")
 # good_code = pd.read_csv("C:\\Users\\Mateusz\\Desktop\\EGG_BETAS\\GOODCODE_EEG_BETAS_LEGACY_1\\PSD_metrics.csv")
@@ -28,13 +28,13 @@ good_code = pd.read_csv("C:\\Users\\Mateusz\\Desktop\\EGG_BETAS\\GOODCODE_EEG_BE
 # bad_code = pd.read_csv("C:\\Users\\Mateusz\\Desktop\\EGG_BETAS\\BADCODE_EEG_BETAS_WELCH_1\\PSD_metrics.csv")
 # good_code = pd.read_csv("C:\\Users\\Mateusz\\Desktop\\EGG_BETAS\\GOODCODE_EEG_BETAS_WELCH_1\\PSD_metrics.csv")
 
-# bad_code = pd.read_csv("C:\\Users\\Mateusz\\Desktop\\EGG_BETAS\\BADCODE_EEG_BETAS_WELCH_2\\PSD_metrics.csv")
-# good_code = pd.read_csv("C:\\Users\\Mateusz\\Desktop\\EGG_BETAS\\GOODCODE_EEG_BETAS_WELCH_2\\PSD_metrics.csv")
+bad_code = pd.read_csv("C:\\Users\\Mateusz\\Desktop\\EGG_BETAS\\BADCODE_EEG_BETAS_WELCH_2\\PSD_metrics.csv")
+good_code = pd.read_csv("C:\\Users\\Mateusz\\Desktop\\EGG_BETAS\\GOODCODE_EEG_BETAS_WELCH_2\\PSD_metrics.csv")
 
 
 # usuwanie wybranych uczestników
-good_code = good_code[~good_code['Respondent Name'].isin(['Mateusz Rokosa', 'Mateusz Sitarczyk'])]
-bad_code = bad_code[~bad_code['Respondent Name'].isin(['Konrad Kazieczko', 'Maciej Chodukiewicz'])]
+good_code = good_code[~good_code['Respondent Name'].isin(['Mateusz Rokosa', 'Filip Błażełek'])]
+bad_code = bad_code[~bad_code['Respondent Name'].isin(['Konrad Kazieczko', 'Mateusz Starczyk'])]
 
 
 # zamiana decybeli na mikrovolty
@@ -44,6 +44,7 @@ good_code[good_code.columns[15:50]] = good_code[good_code.columns[15:50]].applym
     lambda x: convert_decibel_to_micro_volt(x))
 
 
+# alpha_channels = ['Mean PSD Ch2 Alpha (dB)', 'Mean PSD Ch3 Alpha (dB)', 'Mean PSD Ch4 Alpha (dB)', 'Mean PSD Ch5 Alpha (dB)', 'Mean PSD Ch6 Alpha (dB)', 'Mean PSD Ch7 Alpha (dB)', 'Mean PSD Ch8 Alpha (dB)']
 alpha_channels = ['Mean PSD Ch2 Alpha (dB)', 'Mean PSD Ch3 Alpha (dB)', 'Mean PSD Ch4 Alpha (dB)', 'Mean PSD Ch5 Alpha (dB)', 'Mean PSD Ch6 Alpha (dB)', 'Mean PSD Ch7 Alpha (dB)', 'Mean PSD Ch8 Alpha (dB)']
 theta_channels = ['Mean PSD Ch2 Theta (dB)', 'Mean PSD Ch3 Theta (dB)', 'Mean PSD Ch4 Theta (dB)', 'Mean PSD Ch5 Theta (dB)', 'Mean PSD Ch6 Theta (dB)', 'Mean PSD Ch7 Theta (dB)', 'Mean PSD Ch8 Theta (dB)']
 low_beta_channels = ['Mean PSD Ch2 Delta (dB)', 'Mean PSD Ch3 Delta (dB)', 'Mean PSD Ch4 Delta (dB)', 'Mean PSD Ch5 Delta (dB)', 'Mean PSD Ch6 Delta (dB)', 'Mean PSD Ch7 Delta (dB)', 'Mean PSD Ch8 Delta (dB)']
@@ -151,24 +152,24 @@ good_code = pd.read_csv('result_good.csv')
 
 
 # Alpha Band Power
-# print(bad_code.groupby('Label')['Mean Alpha'].median())
-# print(good_code.groupby('Label')['Mean Alpha'].median())
+print(bad_code.groupby('Label')['Mean Alpha'].median())
+print(good_code.groupby('Label')['Mean Alpha'].median())
 # print(bad_code.groupby('Label')['Mean Alpha'].mean())
 # print(good_code.groupby('Label')['Mean Alpha'].mean())
 # print(bad_code.groupby('Label')['Mean Alpha'].std())
 # print(good_code.groupby('Label')['Mean Alpha'].std())
-# print(shapiro(bad_code.loc[bad_code['Label'] == 'zad1', 'Mean Alpha']))
-# print(shapiro(good_code.loc[good_code['Label'] == 'zad1', 'Mean Alpha']))
-# print(shapiro(bad_code.loc[bad_code['Label'] == 'zad2', 'Mean Alpha']))
-# print(shapiro(good_code.loc[good_code['Label'] == 'zad2', 'Mean Alpha']))
-# print(shapiro(bad_code.loc[bad_code['Label'] == 'zad3', 'Mean Alpha']))
-# print(shapiro(good_code.loc[good_code['Label'] == 'zad3', 'Mean Alpha']))
-# print(mannwhitneyu(bad_code.loc[bad_code['Label'] == 'zad1', 'Mean Alpha'], good_code.loc[good_code['Label'] == 'zad1', 'Mean Alpha']))
-# print(mannwhitneyu(bad_code.loc[bad_code['Label'] == 'zad2', 'Mean Alpha'], good_code.loc[good_code['Label'] == 'zad2', 'Mean Alpha']))
-# print(mannwhitneyu(bad_code.loc[bad_code['Label'] == 'zad3', 'Mean Alpha'], good_code.loc[good_code['Label'] == 'zad3', 'Mean Alpha']))
-# print(ttest_ind(bad_code.loc[bad_code['Label'] == 'zad1', 'Mean Alpha'], good_code.loc[good_code['Label'] == 'zad1', 'Mean Alpha']))
-# print(ttest_ind(bad_code.loc[bad_code['Label'] == 'zad2', 'Mean Alpha'], good_code.loc[good_code['Label'] == 'zad2', 'Mean Alpha']))
-# print(ttest_ind(bad_code.loc[bad_code['Label'] == 'zad3', 'Mean Alpha'], good_code.loc[good_code['Label'] == 'zad3', 'Mean Alpha']))
+print(shapiro(bad_code.loc[bad_code['Label'] == 'zad1', 'Mean Alpha']))
+print(shapiro(good_code.loc[good_code['Label'] == 'zad1', 'Mean Alpha']))
+print(shapiro(bad_code.loc[bad_code['Label'] == 'zad2', 'Mean Alpha']))
+print(shapiro(good_code.loc[good_code['Label'] == 'zad2', 'Mean Alpha']))
+print(shapiro(bad_code.loc[bad_code['Label'] == 'zad3', 'Mean Alpha']))
+print(shapiro(good_code.loc[good_code['Label'] == 'zad3', 'Mean Alpha']))
+print(mannwhitneyu(bad_code.loc[bad_code['Label'] == 'zad1', 'Mean Alpha'], good_code.loc[good_code['Label'] == 'zad1', 'Mean Alpha']))
+print(mannwhitneyu(bad_code.loc[bad_code['Label'] == 'zad2', 'Mean Alpha'], good_code.loc[good_code['Label'] == 'zad2', 'Mean Alpha']))
+print(mannwhitneyu(bad_code.loc[bad_code['Label'] == 'zad3', 'Mean Alpha'], good_code.loc[good_code['Label'] == 'zad3', 'Mean Alpha']))
+print(ttest_ind(bad_code.loc[bad_code['Label'] == 'zad1', 'Mean Alpha'], good_code.loc[good_code['Label'] == 'zad1', 'Mean Alpha']))
+print(ttest_ind(bad_code.loc[bad_code['Label'] == 'zad2', 'Mean Alpha'], good_code.loc[good_code['Label'] == 'zad2', 'Mean Alpha']))
+print(ttest_ind(bad_code.loc[bad_code['Label'] == 'zad3', 'Mean Alpha'], good_code.loc[good_code['Label'] == 'zad3', 'Mean Alpha']))
 
 
 # Low Beta Band Power
