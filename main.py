@@ -33,8 +33,8 @@ good_code = pd.read_csv("C:\\Users\\Mateusz\\Desktop\\EGG_BETAS\\GOODCODE_EEG_BE
 
 
 # usuwanie wybranych uczestników
-good_code = good_code[~good_code['Respondent Name'].isin(['Mateusz Rokosa', 'Filip Błażełek'])]
-bad_code = bad_code[~bad_code['Respondent Name'].isin(['Konrad Kazieczko', 'Mateusz Starczyk'])]
+good_code = good_code[~good_code['Respondent Name'].isin(['Mateusz Rokosa'])]
+bad_code = bad_code[~bad_code['Respondent Name'].isin(['Konrad Kazieczko'])]
 
 
 # zamiana decybeli na mikrovolty
@@ -94,11 +94,11 @@ bad_code = bad_code[columns_to_save]
 
 
 # agregacja zadań 3.1-3.4
-good_code_z3 = good_code[good_code['Label'].isin(['zad3.1', 'zad3.2', 'zad3.3', 'zad3.4'])].groupby('Respondent Name', as_index=False).agg('mean')
+good_code_z3 = good_code[good_code['Label'].isin(['zad3.2', 'zad3.3', 'zad3.4'])].groupby('Respondent Name', as_index=False).agg('mean')
 good_code_z3['Label'] = 'zad3'
 good_code = good_code[~good_code['Label'].isin(['zad3.1', 'zad3.2', 'zad3.3', 'zad3.4'])].append(good_code_z3, ignore_index=True)
 
-bad_code_z3 = bad_code[bad_code['Label'].isin(['zad3.1', 'zad3.2', 'zad3.3', 'zad3.4'])].groupby('Respondent Name', as_index=False).agg('mean')
+bad_code_z3 = bad_code[bad_code['Label'].isin(['zad3.2', 'zad3.3', 'zad3.4'])].groupby('Respondent Name', as_index=False).agg('mean')
 bad_code_z3['Label'] = 'zad3'
 bad_code = bad_code[~bad_code['Label'].isin(['zad3.1', 'zad3.2', 'zad3.3', 'zad3.4'])].append(bad_code_z3, ignore_index=True)
 
@@ -112,22 +112,22 @@ good_code = pd.read_csv('result_good.csv')
 ### Analiza Theta/Alpha
 # print(bad_code.groupby('Label')['TAR'].median())
 # print(good_code.groupby('Label')['TAR'].median())
-# print(bad_code.groupby('Label')['TAR'].mean())
-# print(good_code.groupby('Label')['TAR'].mean())
+print(bad_code.groupby('Label')['TAR'].mean())
+print(good_code.groupby('Label')['TAR'].mean())
 # print(bad_code.groupby('Label')['TAR'].std())
 # print(good_code.groupby('Label')['TAR'].std())
-# print(shapiro(bad_code.loc[bad_code['Label'] == 'zad1', 'TAR']))
-# print(shapiro(good_code.loc[good_code['Label'] == 'zad1', 'TAR']))
-# print(shapiro(bad_code.loc[bad_code['Label'] == 'zad2', 'TAR']))
-# print(shapiro(good_code.loc[good_code['Label'] == 'zad2', 'TAR']))
-# print(shapiro(bad_code.loc[bad_code['Label'] == 'zad3', 'TAR']))
-# print(shapiro(good_code.loc[good_code['Label'] == 'zad3', 'TAR']))
-# print(mannwhitneyu(bad_code.loc[bad_code['Label'] == 'zad1', 'TAR'], good_code.loc[good_code['Label'] == 'zad1', 'TAR']))
-# print(mannwhitneyu(bad_code.loc[bad_code['Label'] == 'zad2', 'TAR'], good_code.loc[good_code['Label'] == 'zad2', 'TAR']))
-# print(mannwhitneyu(bad_code.loc[bad_code['Label'] == 'zad3', 'TAR'], good_code.loc[good_code['Label'] == 'zad3', 'TAR']))
-# print(ttest_ind(bad_code.loc[bad_code['Label'] == 'zad1', 'TAR'], good_code.loc[good_code['Label'] == 'zad1', 'TAR']))
-# print(ttest_ind(bad_code.loc[bad_code['Label'] == 'zad2', 'TAR'], good_code.loc[good_code['Label'] == 'zad2', 'TAR']))
-# print(ttest_ind(bad_code.loc[bad_code['Label'] == 'zad3', 'TAR'], good_code.loc[good_code['Label'] == 'zad3', 'TAR']))
+print(shapiro(bad_code.loc[bad_code['Label'] == 'zad1', 'TAR']))
+print(shapiro(good_code.loc[good_code['Label'] == 'zad1', 'TAR']))
+print(shapiro(bad_code.loc[bad_code['Label'] == 'zad2', 'TAR']))
+print(shapiro(good_code.loc[good_code['Label'] == 'zad2', 'TAR']))
+print(shapiro(bad_code.loc[bad_code['Label'] == 'zad3', 'TAR']))
+print(shapiro(good_code.loc[good_code['Label'] == 'zad3', 'TAR']))
+print(mannwhitneyu(bad_code.loc[bad_code['Label'] == 'zad1', 'TAR'], good_code.loc[good_code['Label'] == 'zad1', 'TAR']))
+print(mannwhitneyu(bad_code.loc[bad_code['Label'] == 'zad2', 'TAR'], good_code.loc[good_code['Label'] == 'zad2', 'TAR']))
+print(mannwhitneyu(bad_code.loc[bad_code['Label'] == 'zad3', 'TAR'], good_code.loc[good_code['Label'] == 'zad3', 'TAR']))
+print(ttest_ind(bad_code.loc[bad_code['Label'] == 'zad1', 'TAR'], good_code.loc[good_code['Label'] == 'zad1', 'TAR']))
+print(ttest_ind(bad_code.loc[bad_code['Label'] == 'zad2', 'TAR'], good_code.loc[good_code['Label'] == 'zad2', 'TAR']))
+print(ttest_ind(bad_code.loc[bad_code['Label'] == 'zad3', 'TAR'], good_code.loc[good_code['Label'] == 'zad3', 'TAR']))
 
 
 # Theta Band Power
@@ -152,24 +152,24 @@ good_code = pd.read_csv('result_good.csv')
 
 
 # Alpha Band Power
-print(bad_code.groupby('Label')['Mean Alpha'].median())
-print(good_code.groupby('Label')['Mean Alpha'].median())
+# print(bad_code.groupby('Label')['Mean Alpha'].median())
+# print(good_code.groupby('Label')['Mean Alpha'].median())
 # print(bad_code.groupby('Label')['Mean Alpha'].mean())
 # print(good_code.groupby('Label')['Mean Alpha'].mean())
 # print(bad_code.groupby('Label')['Mean Alpha'].std())
 # print(good_code.groupby('Label')['Mean Alpha'].std())
-print(shapiro(bad_code.loc[bad_code['Label'] == 'zad1', 'Mean Alpha']))
-print(shapiro(good_code.loc[good_code['Label'] == 'zad1', 'Mean Alpha']))
-print(shapiro(bad_code.loc[bad_code['Label'] == 'zad2', 'Mean Alpha']))
-print(shapiro(good_code.loc[good_code['Label'] == 'zad2', 'Mean Alpha']))
-print(shapiro(bad_code.loc[bad_code['Label'] == 'zad3', 'Mean Alpha']))
-print(shapiro(good_code.loc[good_code['Label'] == 'zad3', 'Mean Alpha']))
-print(mannwhitneyu(bad_code.loc[bad_code['Label'] == 'zad1', 'Mean Alpha'], good_code.loc[good_code['Label'] == 'zad1', 'Mean Alpha']))
-print(mannwhitneyu(bad_code.loc[bad_code['Label'] == 'zad2', 'Mean Alpha'], good_code.loc[good_code['Label'] == 'zad2', 'Mean Alpha']))
-print(mannwhitneyu(bad_code.loc[bad_code['Label'] == 'zad3', 'Mean Alpha'], good_code.loc[good_code['Label'] == 'zad3', 'Mean Alpha']))
-print(ttest_ind(bad_code.loc[bad_code['Label'] == 'zad1', 'Mean Alpha'], good_code.loc[good_code['Label'] == 'zad1', 'Mean Alpha']))
-print(ttest_ind(bad_code.loc[bad_code['Label'] == 'zad2', 'Mean Alpha'], good_code.loc[good_code['Label'] == 'zad2', 'Mean Alpha']))
-print(ttest_ind(bad_code.loc[bad_code['Label'] == 'zad3', 'Mean Alpha'], good_code.loc[good_code['Label'] == 'zad3', 'Mean Alpha']))
+# print(shapiro(bad_code.loc[bad_code['Label'] == 'zad1', 'Mean Alpha']))
+# print(shapiro(good_code.loc[good_code['Label'] == 'zad1', 'Mean Alpha']))
+# print(shapiro(bad_code.loc[bad_code['Label'] == 'zad2', 'Mean Alpha']))
+# print(shapiro(good_code.loc[good_code['Label'] == 'zad2', 'Mean Alpha']))
+# print(shapiro(bad_code.loc[bad_code['Label'] == 'zad3', 'Mean Alpha']))
+# print(shapiro(good_code.loc[good_code['Label'] == 'zad3', 'Mean Alpha']))
+# print(mannwhitneyu(bad_code.loc[bad_code['Label'] == 'zad1', 'Mean Alpha'], good_code.loc[good_code['Label'] == 'zad1', 'Mean Alpha']))
+# print(mannwhitneyu(bad_code.loc[bad_code['Label'] == 'zad2', 'Mean Alpha'], good_code.loc[good_code['Label'] == 'zad2', 'Mean Alpha']))
+# print(mannwhitneyu(bad_code.loc[bad_code['Label'] == 'zad3', 'Mean Alpha'], good_code.loc[good_code['Label'] == 'zad3', 'Mean Alpha']))
+# print(ttest_ind(bad_code.loc[bad_code['Label'] == 'zad1', 'Mean Alpha'], good_code.loc[good_code['Label'] == 'zad1', 'Mean Alpha']))
+# print(ttest_ind(bad_code.loc[bad_code['Label'] == 'zad2', 'Mean Alpha'], good_code.loc[good_code['Label'] == 'zad2', 'Mean Alpha']))
+# print(ttest_ind(bad_code.loc[bad_code['Label'] == 'zad3', 'Mean Alpha'], good_code.loc[good_code['Label'] == 'zad3', 'Mean Alpha']))
 
 
 # Low Beta Band Power
